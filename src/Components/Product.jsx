@@ -6,19 +6,19 @@ function Product() {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
 
-//  console.log(id);
+  //  console.log(id);
   useEffect(() => {
     if (id) {
       fetch(`http://localhost:3004/Products/${id}`)
         .then((f) => f.json())
         .then((data) => {
-            // console.log("json data",data);
+          // console.log("json data",data);
           if (data.name == undefined) {
             setProduct(null);
-           // console.log("Null data",product);
+            // console.log("Null data",product);
           } else {
             setProduct(data);
-          //  console.log("Get data",product,data);
+            //  console.log("Get data",product,data);
           }
         });
     }
@@ -28,7 +28,16 @@ function Product() {
       {/* <p>Product Id: {product.id}</p>
       <p>Product Name: {product.name}</p>
       <p>Product Price: {product.price}</p> */}
-      {product == null ? <Not /> : <h1> {product.name} </h1>}
+      {product == null ? (
+        <Not />
+      ) : (
+        <h1>
+          {" "}
+          <p>Product Id: {product.id}</p>
+          <p>Product Name: {product.name}</p>
+          <p>Product Price: {product.price}</p>{" "}
+        </h1>
+      )}
     </>
   );
 }
